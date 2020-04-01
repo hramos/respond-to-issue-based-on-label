@@ -30,16 +30,16 @@ async function run() {
 
     const { owner, repo } = github.context.repo;
     const { label, issue } = github.context.payload; // https://developer.github.com/v3/activity/events/types/#issuesevent
+    core.debug(`Label added: ${label.name}`);
     const issue_number = issue.number;
-
+    core.debug(`Loading config at ${configPath}`);
     const labelActions: Map<string, LabelActionT> = await getLabelActions(
       client,
       configPath
     );
-
     if (labelActions.has(label.name)) {
       if (perform) {
-        console.log(`${owner}/${repo}#${issue_number} performing label action`);
+        console.log(`${owner}/${repo}#${issue_number} performing action for label ${label.name}`);
         // $FlowFixMe
         await performAction(client, labelActions.get(label.name), issue_number);
       } else {
@@ -47,6 +47,8 @@ async function run() {
           `${owner}/${repo}#${issue_number} would have been actioned on (dry-run)`
         );
       }
+    } else {
+      core.debug(`Ignoring label ${label.name}, no action found in config.`);
     }
   } catch (error) {
     core.error(error);
@@ -91,7 +93,7 @@ async function addIssueComment(
       body
     });
   } catch (e) {
-    console.log("addIssueComment error:" + e);
+    throw Error(`Action failed. Could not add comment: ${e}`);
   }
 }
 
@@ -108,7 +110,7 @@ async function addIssueLabels(
       labels
     });
   } catch (e) {
-    console.log("addIssueLabels error:" + e);
+    throw Error(`Action failed. Could not add labels: ${e}`);
   }
 }
 
@@ -121,7 +123,7 @@ async function closeIssue(client: github.GitHub, issue_number: number) {
       state: "closed"
     });
   } catch (e) {
-    console.log("closeIssue error:" + e);
+    throw Error(`Action failed. Could not close issue: ${e}`);
   }
 }
 
@@ -134,7 +136,7 @@ async function openIssue(client: github.GitHub, issue_number: number) {
       state: "open"
     });
   } catch (e) {
-    console.log("openIssue error:" + e);
+    throw Error(`Action failed. Could not re-open issue: ${e}`);
   }
 }
 
@@ -146,7 +148,7 @@ async function lockIssue(client: github.GitHub, issue_number: number) {
       issue_number
     });
   } catch (e) {
-    console.log("lockIssue error:" + e);
+    throw Error(`Action failed. Could not lock issue: ${e}`);
   }
 }
 
@@ -164,7 +166,7 @@ async function lockIssueWithReason(
       lock_reason
     });
   } catch (e) {
-    console.log("lockIssueWithReason error:" + e);
+    throw Error(`Action failed. Could not lock issue with lock reason: ${e}`);
   }
 }
 
@@ -194,7 +196,7 @@ async function fetchContent(
       response.data.encoding
     ).toString();
   } catch (e) {
-    console.log("error:" + e);
+    throw Error(`Could not fetch repo contents: ${e}`);
   }
 }
 
@@ -266,6 +268,7 @@ function getLabelActionMapFromObject(
         );
       }
     }
+    labelActionsMap.set(label, labelAction);
   }
 
   return labelActionsMap;

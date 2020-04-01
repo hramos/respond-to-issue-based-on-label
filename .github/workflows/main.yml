@@ -13,5 +13,4 @@ jobs:
       - name: Process Label Action
         uses: ./
         with:
-          configuration-path: .github/label-actions.yml
           repo-token: ${{ secrets.GITHUB_TOKEN }}

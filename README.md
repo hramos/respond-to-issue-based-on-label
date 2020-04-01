@@ -81,9 +81,9 @@ jobs:
 
 ## Inputs
 
-### `configuration-path:`
+### `configuration-path`
 
-Path to configuration file. Default `.github/label-responses.yml`.
+Path to configuration file. Default `.github/label-actions.yml`.
 
 ### `perform`
 

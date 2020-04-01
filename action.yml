@@ -1,18 +1,18 @@
-name: "Label Actions"
-description: "Trigger actions on issues based on labels."
+name: 'Label Actions'
+description: 'Trigger actions on issues based on labels.'
 inputs:
   configuration-path:
-    description: "The path for the label response configurations"
-    default: ".github/label-actions.yml"
+    description: 'The path for the label response configurations'
+    default: '.github/label-actions.yml'
   perform:
-    description: "Whether to perform any action, if needed. Set to false to do a dry-run."
+    description: 'Whether to perform any action, if needed. Set to false to do a dry-run.'
     default: true
   repo-token:
-    description: "The GITHUB_TOKEN secret."
+    description: 'The GITHUB_TOKEN secret.'
     required: true
 runs:
-  using: "node12"
-  main: "lib/label-actions.js"
+  using: 'node12'
+  main: 'lib/label-actions.js'
 branding:
-  icon: "bookmark"
-  color: "blue"
+  icon: 'bookmark'
+  color: 'blue'
