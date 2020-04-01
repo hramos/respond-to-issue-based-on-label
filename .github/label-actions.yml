@@ -1,0 +1,11 @@
+close-me: 
+  close: true
+comment-me: 
+  comment: "Hello, world."
+label-me: 
+  labels: 
+    - processed
+lock-me:
+  lock: true
+reopen-me:
+  reopen: true
