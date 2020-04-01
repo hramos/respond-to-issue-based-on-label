@@ -85,8 +85,10 @@ jobs:
 
 Path to configuration file. Default `.github/label-actions.yml`.
 
-### `perform`
-
 ### `repo-token`
 
 _Note: This grants access to the `GITHUB_TOKEN` so the action can make calls to GitHub's API._
+
+### `perform`
+
+Set to false and the action will be omitted. Useful for dry-runs.
