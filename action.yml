@@ -1,9 +1,9 @@
-name: 'Label Actions'
-description: 'Trigger actions on issues based on labels.'
+name: 'Respond To Issue Based on Label'
+description: 'Act on issues when specific labels are added.'
 inputs:
   configuration-path:
     description: 'The path for the label response configurations'
-    default: '.github/label-actions.yml'
+    default: '.github/respond-to-issue-based-on-label.yml'
   perform:
     description: 'Whether to perform any action, if needed. Set to false to do a dry-run.'
     default: true
@@ -12,7 +12,7 @@ inputs:
     required: true
 runs:
   using: 'node12'
-  main: 'lib/label-actions.js'
+  main: 'lib/respond-to-issue-based-on-label.js'
 branding:
   icon: 'bookmark'
   color: 'blue'

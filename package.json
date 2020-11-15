@@ -1,7 +1,7 @@
 {
-  "name": "label-actions",
-  "version": "1.0.0",
-  "description": "Trigger Actions on Issues Based on Labels",
+  "name": "respond-to-issue-based-on-label",
+  "version": "2.0.0",
+  "description": "Act on issues when specific labels are added.",
   "main": "index.js",
   "scripts": {
     "build": "babel src/ -d lib/",
@@ -12,18 +12,20 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/hramos/label-actions.git"
+    "url": "git+https://github.com/hramos/respond-to-issue-based-on-label.git"
   },
   "keywords": [
     "actions",
-    "label actions"
+    "issues",
+    "labels",
+    "label triggers"
   ],
   "author": "Héctor Ramos",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/hramos/label-actions/issues"
+    "url": "https://github.com/hramos/respond-to-issue-based-on-label/issues"
   },
-  "homepage": "https://github.com/hramos/label-actions#readme",
+  "homepage": "https://github.com/hramos/respond-to-issue-based-on-label#readme",
   "dependencies": {
     "@actions/core": "^1.2.6",
     "@actions/github": "^2.1.1",

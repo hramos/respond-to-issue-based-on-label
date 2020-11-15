@@ -1,4 +1,4 @@
-# GitHub Action: Trigger Actions on Issues Based on Labels
+# GitHub Action: Respond to Issue Based on Label
 
 A bot that responds with a comment whenever a particular label is applied to an issue. The bot also supports closing, reopening, locking issues, and adding labels.
 
@@ -92,3 +92,7 @@ _Note: This grants access to the `GITHUB_TOKEN` so the action can make calls to 
 ### `perform`
 
 Set to false and the action will be omitted. Useful for dry-runs.
+
+## Inspiration
+
+This project is inspired by the [label-actions](https://github.com/dessant/label-actions) GitHub App by @dessant.
